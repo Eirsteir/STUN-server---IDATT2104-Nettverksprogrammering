@@ -12,18 +12,33 @@ import java.io.IOException;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
+/**
+ * Message class for message handling
+ */
 @ToString
 public class Message {
 
     private MessageHeader messageHeader;
     private List<Attribute> attributes;
 
+    /**
+     * A message consists of a messageheader, and attributes
+     * We set the length in the message header at creation of the message
+     * @param messageHeader
+     * @param attributes
+     */
     public Message(MessageHeader messageHeader, Attribute... attributes) {
         this.messageHeader = messageHeader;
         this.attributes = List.of(attributes);
         setMessageHeaderLength();
     }
 
+    /**
+     * Writes method header to dataoutptstream
+     * Writes attributes to dataoutputstream with writeAttributesTo() method
+     * @return byteArray in byteOut
+     * @throws IOException
+     */
     public byte[] getBytes() throws IOException {
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
         DataOutputStream dataOut = new DataOutputStream(byteOut);
@@ -34,6 +49,12 @@ public class Message {
         return byteOut.toByteArray();
     }
 
+    /**
+     * Writes attributes to dataoutputstream
+     * Attributes type, length and bytes are written
+     * @param dataOut
+     * @throws IOException
+     */
     private void writeAttributesTo(DataOutputStream dataOut) throws IOException {
         for (Attribute attribute : attributes) {
             dataOut.writeShort(attribute.getType().getBits());
@@ -42,6 +63,11 @@ public class Message {
         }
     }
 
+    /**
+     * Method for getting the length of an attribute
+     * Attribute length is the sum of the header and attribute length
+     * @return length
+     */
     public int getLength() {
         int length = 0;
         for (Attribute attribute : attributes) {

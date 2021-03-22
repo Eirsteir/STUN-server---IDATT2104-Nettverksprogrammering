@@ -16,7 +16,11 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Class to start he STUN server
+ * The STUN server is created based on the configurations defined in RFC5389
+ * https://tools.ietf.org/html/rfc5389#section-18.4
+ */
 @Slf4j
 @Component
 public class StunServer {
@@ -29,7 +33,7 @@ public class StunServer {
     private List<StunServerThread> listeners;
 
     public StunServer() {
-        //primary and secondary address are set with primary and secodary port 
+        //primary and secondary address are set with primary and secodary port
         this.primaryAddress = new InetSocketAddress("localhost", PORT);
         this.secondaryAddress = new InetSocketAddress("localhost", SECONDARY_PORT);
         this.listeners = new ArrayList<>();

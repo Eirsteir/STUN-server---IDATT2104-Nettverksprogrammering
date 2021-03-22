@@ -8,11 +8,20 @@ public class MessageHeaderParser {
 
     private static final int MESSAGE_CLASS_MASK = 0x0110;
 
+    /**
+     * The message header parser is provided the header bytes
+     * The different contents of the header is read with datainputstream
+     * Find each part of the messageheader within the provided bytes
+     * Sets each value based on the order of bytes
+     * Creates a messageheader
+     * @param headerBytes
+     * @return message header
+     * @throws IOException
+     */
     public MessageHeader parseMessageHeader(byte[] headerBytes) throws IOException {
         ByteArrayInputStream byteIn = new ByteArrayInputStream(headerBytes);
         DataInputStream dataIn = new DataInputStream(byteIn);
 
-        int leading32Bits = dataIn.readInt();
         /*
              0                   1                   2                   3
               0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -26,8 +35,9 @@ public class MessageHeaderParser {
          *  |                                                               |
          *  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
         */
+        int leading32Bits = dataIn.readInt(); //is the first int of the header bytes
         int leadingZeroes = (leading32Bits & MessageHeader.MESSAGE_TYPE_MASK) >> MessageHeader.MESSAGE_TYPE_SHIFT;
-        int messageTypeBits = (leading32Bits & MessageHeader.MESSAGE_TYPE_MASK) >> MessageHeader.MESSAGE_TYPE_SHIFT;
+        int messageTypeBits = (leading32Bits & MessageHeader.MESSAGE_TYPE_MASK) >> MessageHeader.MESSAGE_TYPE_SHIFT; //type is bit 3-16
         int messageClassBits = messageTypeBits & MessageHeader.MESSAGE_CLASS_MASK;
         int messageMethodBits = messageTypeBits & MessageHeader.MESSAGE_METHOD_MASK;
         MessageClass messageClass = MessageClass.fromBits(messageClassBits);
@@ -35,11 +45,11 @@ public class MessageHeaderParser {
 
         int length = leading32Bits & MessageHeader.MESSAGE_LENGTH_MASK;
 
-        int magicCookie = dataIn.readInt();
-        checkMagicCookie(magicCookie);
+        int magicCookie = dataIn.readInt(); //magic cookie is the following 16 bits found with read int
+        checkMagicCookie(magicCookie); //we need to check if the magic cookie is its constant value
 
-        byte[] transactionId = new byte[MessageHeader.TRANSACTION_ID_LENGTH];
-        dataIn.readFully(transactionId);
+        byte[] transactionId = new byte[MessageHeader.TRANSACTION_ID_LENGTH]; //byte array of transactionId is defined with its constant length
+        dataIn.readFully(transactionId); //reads the rest of the datainputstream into the transaction id
 
         return new MessageHeader(messageMethod, messageClass, length, transactionId);
     }

@@ -35,12 +35,21 @@ public class MappedAddress implements Attribute {
     private int length;
     private int addressFamily;
 
+    /**
+     * Defines each part of the mapped address
+     * @param address
+     */
     public MappedAddress(InetSocketAddress address) {
         this.address = address;
         this.length = resolveLength(address);
         this.addressFamily = resolveAddressFamily(address);
     }
 
+    /**
+     * Checks the class type with getAddress to determine the length of the mapped address
+     * @param address
+     * @return
+     */
     private int resolveLength(InetSocketAddress address) {
         if (address.getAddress() instanceof Inet4Address)
             return IPV4_LENGTH;
@@ -50,6 +59,11 @@ public class MappedAddress implements Attribute {
         throw new IllegalArgumentException("Unknown IP address class: " + address.getAddress().getClass());
     }
 
+    /**
+     * Checks class type with getAddress to determine the address family of the mapepd address
+     * @param address
+     * @return
+     */
     private int resolveAddressFamily(InetSocketAddress address) {
         if (address.getAddress() instanceof Inet4Address)
             return IPV4_FAMILY;
@@ -69,6 +83,11 @@ public class MappedAddress implements Attribute {
         return this.length;
     }
 
+    /**
+     * Method to return the mapped address bytes
+     * @return byte array if the mapped address
+     * @throws IOException
+     */
     @Override
     public byte[] getBytes() throws IOException {
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
