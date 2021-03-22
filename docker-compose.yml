@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  stun:
+    container_name: stun
+    build:
+      context: ./stun-server
+      dockerfile: Dockerfile
+    restart: on-failure
+    expose:
+      - 3478
+      - 3479
+    ports:
+      - 3478:3478
+      - 3479:3479
+    volumes:
+      - ./stun-server:/app
+      - ~/.m2:/root/.m2
+
+  client:
+    build:
+      context: p2p-client
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    restart: on-failure
+    stdin_open: true
+    volumes:
+      - /app/node_modules
+      - ./p2p-client:/app
+    depends_on: 
+      - signaling
+
+  signaling:
+    container_name: signaling
+    build:
+      context: ./signaling-server
+      dockerfile: Dockerfile
+    volumes:
+      - './signaling-server:/app'
+      - '/app/node_modules'
+    ports:
+      - 8000:8000
