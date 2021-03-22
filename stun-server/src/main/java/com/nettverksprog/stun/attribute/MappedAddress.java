@@ -5,8 +5,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.Inet4Address;
-import java.net.Inet6Address;
 
 
 /**
@@ -24,63 +22,19 @@ import java.net.Inet6Address;
  *       |                                                               |
  *       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
  */
-public class MappedAddress implements Attribute {
-
-    private static final int IPV4_LENGTH = 8; // TODO: byte?
-    private static final int IPV6_LENGTH = 20; // TODO: byte?
-    private static final int IPV4_FAMILY = 0x01;
-    private static final int IPV6_FAMILY = 0x02;
-
-    private InetSocketAddress address;
-    private int length;
-    private int addressFamily;
+public class MappedAddress extends Address {
 
     /**
      * Defines each part of the mapped address
      * @param address
      */
     public MappedAddress(InetSocketAddress address) {
-        this.address = address;
-        this.length = resolveLength(address);
-        this.addressFamily = resolveAddressFamily(address);
-    }
-
-    /**
-     * Checks the class type with getAddress to determine the length of the mapped address
-     * @param address
-     * @return
-     */
-    private int resolveLength(InetSocketAddress address) {
-        if (address.getAddress() instanceof Inet4Address)
-            return IPV4_LENGTH;
-        else if (address.getAddress() instanceof Inet6Address)
-            return IPV6_LENGTH;
-
-        throw new IllegalArgumentException("Unknown IP address class: " + address.getAddress().getClass());
-    }
-
-    /**
-     * Checks class type with getAddress to determine the address family of the mapepd address
-     * @param address
-     * @return
-     */
-    private int resolveAddressFamily(InetSocketAddress address) {
-        if (address.getAddress() instanceof Inet4Address)
-            return IPV4_FAMILY;
-        else if (address.getAddress() instanceof Inet6Address)
-            return IPV6_FAMILY;
-
-        throw new IllegalArgumentException("Unknown IP address class: " + address.getAddress().getClass());
+        super(address);
     }
 
     @Override
     public AttributeType getType() {
         return AttributeType.MAPPED_ADDRESS;
-    }
-
-    @Override
-    public int getLength() {
-        return this.length;
     }
 
     /**

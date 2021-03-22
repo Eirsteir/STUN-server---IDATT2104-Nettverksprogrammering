@@ -31,7 +31,7 @@ public class MessageHeader {
 
     public final static int HEADER_LENGTH = 20;
     public final static int TRANSACTION_ID_LENGTH = 12;
-    protected static final int MAGIC_COOKIE = 0x2112A442;
+    public static final int MAGIC_COOKIE = 0x2112A442;
     public static final int LEADING_ZEROS_SHIFT = 0x1E;
     public static final int MESSAGE_TYPE_SHIFT = 0x10;
     public static final int MESSAGE_TYPE_MASK = 0x3FFF0000;

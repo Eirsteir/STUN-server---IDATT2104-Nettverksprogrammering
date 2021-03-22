@@ -1,5 +1,6 @@
 package com.nettverksprog.stun;
 
+import com.nettverksprog.stun.attribute.AttributeBuilder;
 import com.nettverksprog.stun.attribute.MappedAddress;
 import com.nettverksprog.stun.header.MessageClass;
 import com.nettverksprog.stun.header.MessageHeader;
@@ -127,6 +128,7 @@ public class StunServer {
             log.debug("Handling request message of method {}", receivedMessage.getMessageMethod());
 
             Message message = buildSuccessResponse(receivedMessage);
+            log.debug("Sending message response: {}", message);
             byte[] messageBytes = message.getBytes();
 
             packet = new DatagramPacket(messageBytes,
@@ -145,27 +147,16 @@ public class StunServer {
          * @return Success response
          */
         private Message buildSuccessResponse(Message receivedMessage) {
-            Attribute mappedAddress = getMappedAddressAttributeFromClient();
+            List<Attribute> attributes = AttributeBuilder.builder()
+                    .mappedAddress(packet)
+                    .xorMappedAddress(packet, receivedMessage)
+                    .build();
 
             MessageHeader messageHeader = new MessageHeader(MessageMethod.BINDING,
                     MessageClass.SUCCESS_RESPONSE,
                     receivedMessage.getMessageHeader().getTransactionId());
 
-            return new Message(messageHeader, mappedAddress);
-        }
-
-        /**
-         * Sets the destination address to that of the client
-         * The destination port is set to that of the client
-         * MappedAddress is a new InetSocketAddress with the clients address and port
-         * @return MappedAddress
-         */
-        private Attribute getMappedAddressAttributeFromClient() {
-            InetAddress destinationAddress = packet.getAddress();
-            int destinationPort = packet.getPort();
-            InetSocketAddress primaryAddress = new InetSocketAddress(destinationAddress, destinationPort);
-
-            return new MappedAddress(primaryAddress);
+            return new Message(messageHeader, attributes);
         }
 
         /**

@@ -1,5 +1,6 @@
 package com.nettverksprog.stun.message;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.nettverksprog.stun.header.MessageClass;
@@ -27,10 +28,14 @@ public class Message {
      * @param messageHeader
      * @param attributes
      */
-    public Message(MessageHeader messageHeader, Attribute... attributes) {
+    public Message(MessageHeader messageHeader, List<Attribute> attributes) {
         this.messageHeader = messageHeader;
-        this.attributes = List.of(attributes);
+        this.attributes = attributes;
         setMessageHeaderLength();
+    }
+
+    public Message(MessageHeader messageHeader) {
+        this(messageHeader, new ArrayList<>());
     }
 
     /**
