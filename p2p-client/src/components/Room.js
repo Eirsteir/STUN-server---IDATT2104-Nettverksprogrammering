@@ -130,8 +130,10 @@ const Room = (props) => {
         <div className="container">
             <h1>Chat room: {props.match.params.roomID}</h1>
             <Messages messages={messages} />
-            <textarea className="msg-box" value={text} onChange={handleChange} placeholder="Aa" />
-            <button onClick={sendMessage}>Send</button>
+            <div className="send-msg">
+                <textarea className="msg-box" value={text} onChange={handleChange} placeholder="Aa" />
+                <button className="btn" onClick={sendMessage}>Send</button>
+            </div>
         </div>
     );
 };
