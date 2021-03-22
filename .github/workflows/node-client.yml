@@ -20,13 +20,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
+
+    - name: Install dependencies
+      run: npm install
       working-directory: p2p-client
-    - run: npm run build --if-present
+
+    - name: Test
+      run: npm test
       working-directory: p2p-client
-    - run: npm test
+    
+    - name: Build
+      run: npm build
       working-directory: p2p-client
+    
