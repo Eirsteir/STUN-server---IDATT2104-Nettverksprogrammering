@@ -1,0 +1,17 @@
+
+.btn-page {
+    display: flex;
+    background-color: rgb(16, 16, 26);
+    height: 100vh;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+button {
+    width: 500px;
+}
