@@ -126,12 +126,19 @@ const Room = (props) => {
         setText(e.target.value);
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    }
+
+
     return (
         <div className="container">
             <h1>Chat room: {props.match.params.roomID}</h1>
             <Messages messages={messages} />
             <div className="send-msg">
-                <textarea className="msg-box" value={text} onChange={handleChange} placeholder="Aa" />
+                <textarea className="msg-box" value={text} onChange={handleChange} onKeyDown={handleKeyDown} placeholder="Write your message here..." />
                 <button className="btn" onClick={sendMessage}>Send</button>
             </div>
         </div>
