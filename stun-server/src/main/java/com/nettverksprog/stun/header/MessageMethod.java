@@ -4,6 +4,9 @@ import lombok.Getter;
 
 import java.util.stream.Stream;
 
+/**
+ * Message method enum
+ */
 @Getter
 public enum MessageMethod {
     BINDING(0x0001);
@@ -14,6 +17,11 @@ public enum MessageMethod {
         this.bits = bits;
     }
 
+    /**
+     * Returns the BINDING bits if the argument is a BINDING method
+     * @param bits
+     * @return binding bits
+     */
     public static MessageMethod fromBits(int bits) {
         return Stream.of(MessageMethod.values())
                 .filter(c -> c.getBits() == bits)

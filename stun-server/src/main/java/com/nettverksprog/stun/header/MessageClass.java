@@ -2,6 +2,10 @@ package com.nettverksprog.stun.header;
 
 import java.util.stream.Stream;
 
+/**
+ * MessageClass enum
+ * Contains several different message class types
+ */
 public enum MessageClass {
     REQUEST(0x000),
 
@@ -17,6 +21,12 @@ public enum MessageClass {
         this.bits = bits;
     }
 
+    /**
+     * Returns the bits corresponding to the class type
+     * if the argument is equal to bits in class
+     * @param bits
+     * @return class bits
+     */
     public static MessageClass fromBits(int bits) {
         return Stream.of(MessageClass.values())
                 .filter(c -> c.getBits() == bits)

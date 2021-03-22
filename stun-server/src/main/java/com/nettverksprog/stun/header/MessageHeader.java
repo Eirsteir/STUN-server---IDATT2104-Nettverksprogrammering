@@ -7,10 +7,15 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-
+/**
+ * The message header class defines the contents of the header
+ */
 @ToString
 public class MessageHeader {
-    /*
+    /**
+     * The method header contains the following content
+     * with the size in bits in paranthesis
+     *
 	 0                   1                   2                   3
        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 = 32 bits
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -39,6 +44,13 @@ public class MessageHeader {
     private int length;
     private byte[] transactionId;
 
+    /**
+     * Constructor where length is defined at creation
+     * @param messageMethod
+     * @param messageClass
+     * @param length
+     * @param transactionId
+     */
     public MessageHeader(MessageMethod messageMethod, MessageClass messageClass, int length, byte[] transactionId) {
         this.messageMethod = messageMethod;
         this.messageClass = messageClass;
@@ -46,6 +58,12 @@ public class MessageHeader {
         this.transactionId = transactionId;
     }
 
+    /**
+     * Constructor where length initially is set to 0
+     * @param messageMethod
+     * @param messageClass
+     * @param transactionId
+     */
     public MessageHeader(MessageMethod messageMethod, MessageClass messageClass, byte[] transactionId){
         this.messageMethod = messageMethod;
         this.messageClass = messageClass;
@@ -54,7 +72,7 @@ public class MessageHeader {
     }
 
     public void setTransactionId(byte[] id) {
-        System.arraycopy(id, 0, this.transactionId, 0, 12);
+        transactionId = id;
     }
 
     public byte[] getTransactionId() {
@@ -65,6 +83,14 @@ public class MessageHeader {
         return messageHeader.getTransactionId() == this.transactionId;
     }
 
+    /**
+     * getBytes method for fiding the byte contents of the message header
+     * The message- method and class bits with getters
+     * Finds the leading 32 bits using bitshifts with mith LEADING_ZERO_SHIFT and MESSAGE_TYPE_SHIFT constants
+     * MAGIC_COOKIE is defined by its constant value
+     * @return byteArray
+     * @throws IOException
+     */
     public byte[] getBytes() throws IOException{
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
         DataOutputStream dataOut = new DataOutputStream(byteOut);
