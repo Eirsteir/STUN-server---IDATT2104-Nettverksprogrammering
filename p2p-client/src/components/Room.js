@@ -1,33 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import io from "socket.io-client";
-import styled from "styled-components";
 import Messages from '../components/Messages';
-
-const Container = styled.div`
-    height: 80vh;
-    width: 80vw;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
-const MessageBox = styled.textarea`
-    width: 100%;
-    height: 2rem;
-`;
-
-const Button = styled.div`
-    width: 50%;
-    border: 1px solid black;
-    margin-top: 15px;
-    height: 5%;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: black;
-    color: white;
-    font-size: 18px;
-`;
+import '../styles/Room.css'
 
 const Room = (props) => {
     const peerRef = useRef();
@@ -153,11 +127,12 @@ const Room = (props) => {
     }
 
     return (
-        <Container>
+        <div className="container">
+            <h1>Chat room: {props.match.params.roomID}</h1>
             <Messages messages={messages} />
-            <MessageBox value={text} onChange={handleChange} placeholder="Aa" />
-            <Button onClick={sendMessage}>Send</Button>
-        </Container>
+            <textarea className="msg-box" value={text} onChange={handleChange} placeholder="Aa" />
+            <button onClick={sendMessage}>Send</button>
+        </div>
     );
 };
 

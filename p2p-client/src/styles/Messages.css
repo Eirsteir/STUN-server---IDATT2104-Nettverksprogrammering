@@ -4,7 +4,9 @@
     border: 1px solid black;
     margin-top: 10px;
     overflow: scroll;
-    overflow-x: hidden; 
+    overflow-y: auto; 
+    overflow-x: hidden;
+    background-color: white;
 }
 
 .my_message_container {
