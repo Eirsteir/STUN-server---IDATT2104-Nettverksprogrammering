@@ -126,7 +126,7 @@ const Room = (props) => {
         setText(e.target.value);
     }
 
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event) => { // TODO: Add ability for Shift+Enter to go to next line
         if (event.key === 'Enter') {
             sendMessage();
         }
@@ -136,6 +136,10 @@ const Room = (props) => {
     return (
         <div className="container">
             <h1>Chat room: {props.match.params.roomID}</h1>
+            <div className="username">
+                <input id="name" type="text" placeholder="Username"></input>
+                <button id="name-btn">Submit</button>
+            </div>
             <Messages messages={messages} />
             <div className="send-msg">
                 <textarea className="msg-box" value={text} onChange={handleChange} onKeyDown={handleKeyDown} placeholder="Write your message here..." />

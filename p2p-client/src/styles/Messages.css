@@ -25,7 +25,22 @@
     padding: 10px;
     margin-right: 5px;
     text-align: right;
-    border-radius: 20px 20px 0;
+    border-radius: 20px 20px 0 20px;
+}
+
+#usr-r{
+    width: 45%;
+    color: grey;
+    margin-left: 5px;
+    text-align: left;
+    margin-bottom: 0.5em;
+}
+
+#usr-s {
+    width: 45%;
+    color: blue;
+    margin-right: 5px;
+    text-align: right;
 }
 
 .received_message_container {

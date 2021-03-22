@@ -12,6 +12,7 @@ const Messages = (props) => {
                     <div className="my_message">
                         {message.value}
                     </div>
+                    {/*<div id="usr-s">Username</div>*/}
                 </div>
             )
         }
@@ -21,6 +22,7 @@ const Messages = (props) => {
                 <div className="received_message">
                     {message.value}
                 </div>
+                <div id="usr-r">Username</div>
             </div>
         )
     }

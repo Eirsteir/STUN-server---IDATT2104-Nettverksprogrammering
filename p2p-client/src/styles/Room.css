@@ -23,6 +23,8 @@
     resize: none;
     border-radius: 0 0 0 20px;
     font-size: 2rem;
+    padding-left: 2%;
+    padding-top: 1%;
 }
 
 .btn {
@@ -30,12 +32,47 @@
     margin-left: 1%;
     border-radius: 0 0 20px 0;
     cursor: pointer;
-    background-color: rgb(0, 32, 119);
+    background-color: transparent;
     color: white;
     font-size: 2rem;
     outline: none;
+    border: 3px solid white;
+
+}
+
+.btn:hover {
+    background-color: rgba(128, 128, 128, 0.274);
 }
 
 h1 {
     color: white;
+}
+
+.username {
+    display: flex;
+    width: 100%;
+    justify-content: left;
+}
+
+#name {
+    height: 2rem;
+    border-radius: 20px 0 0 20px;
+    margin-right: 1%;
+    padding-left: 1%;
+    border: 3px solid white;
+    outline: none;
+}
+
+#name-btn {
+    border-radius: 0 20px 20px 0;
+    padding-right: 2%;
+    padding-left: 2%;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+}
+
+#name-btn:hover {
+    background-color: rgba(128, 128, 128, 0.274);
 }

@@ -6,7 +6,22 @@
 
 .btn-container {
     display: flex;
+    flex-direction: column;
+    gap: 2rem;
     justify-content: center;
     align-items: center;
     margin: auto;
+}
+
+.create-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    font-size: 2rem;
+    padding: 30px;
+    cursor: pointer;
+}
+
+.create-btn:hover {
+    background-color: rgba(128, 128, 128, 0.274);
 }
