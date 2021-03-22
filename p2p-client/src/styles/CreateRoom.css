@@ -1,17 +1,27 @@
 
 .btn-page {
     display: flex;
-    background-color: rgb(16, 16, 26);
     height: 100vh;
 }
 
 .btn-container {
     display: flex;
+    flex-direction: column;
+    gap: 2rem;
     justify-content: center;
     align-items: center;
     margin: auto;
 }
 
-button {
-    width: 500px;
+.create-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    font-size: 2rem;
+    padding: 30px;
+    cursor: pointer;
+}
+
+.create-btn:hover {
+    background-color: rgba(128, 128, 128, 0.274);
 }

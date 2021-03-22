@@ -11,7 +11,7 @@ const CreateRoom = (props) => {
     return (
         <div className="btn-page">
             <div className="btn-container">
-            <button onClick={create}>Create Room</button>
+            <button className="create-btn" onClick={create}>Create Room</button>
             </div>
         </div>
     );
