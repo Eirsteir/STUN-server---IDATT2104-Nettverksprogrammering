@@ -11,7 +11,6 @@ import java.net.Inet6Address;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 
-
 /**
  *    The format of the XOR-MAPPED-ADDRESS is as follows according to RFC 5389:
  *
@@ -63,6 +62,10 @@ public class XorMappedAddress extends Address {
         return this.address.getPort() ^ xorCookie;
     }
 
+    /**
+     * Gets the XorAddress based on the IP address
+     * @return XorAddress
+     */
     private int getXorAddress() {
         int addressBits = ByteBuffer.wrap(address.getAddress().getAddress()).getInt();
         
