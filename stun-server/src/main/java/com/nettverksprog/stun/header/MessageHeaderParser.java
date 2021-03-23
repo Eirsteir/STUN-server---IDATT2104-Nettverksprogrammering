@@ -7,7 +7,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 public class MessageHeaderParser {
-    
+
     /**
      * The message header parser is provided the header bytes
      * The different contents of the header is read with datainputstream

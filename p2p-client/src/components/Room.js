@@ -47,7 +47,7 @@ const Room = (props) => {
         const peer = new RTCPeerConnection({
             iceServers: [
                 {
-                    urls: 'stun:localhost:3478' //"stun:stun.stunprotocol.org"
+                    urls: 'stun:stun1.l.google.com:19302' // 'stun:localhost:3478' //"stun:stun.stunprotocol.org"
                 }
             ]
         });

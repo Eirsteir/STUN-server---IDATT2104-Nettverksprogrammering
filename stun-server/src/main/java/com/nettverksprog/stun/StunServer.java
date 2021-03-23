@@ -8,6 +8,7 @@ import com.nettverksprog.stun.header.MessageMethod;
 import com.nettverksprog.stun.message.Message;
 import com.nettverksprog.stun.attribute.Attribute;
 import com.nettverksprog.stun.message.MessageParser;
+import com.nettverksprog.stun.message.MessageReceiverValidator;
 import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;
 
@@ -110,11 +111,14 @@ public class StunServer {
          * @throws IOException
          */
         private void handleMessage(Message receivedMessage) throws IOException {
+            new MessageReceiverValidator(receivedMessage).validate();
+
             if (receivedMessage.isRequest() && receivedMessage.isBinding())
                 handleBindingRequest(receivedMessage);
             else
                 log.debug("Cannot handle message of method {}", receivedMessage.getMessageMethod());
         }
+
 
         /**
          * If our message is a binding request

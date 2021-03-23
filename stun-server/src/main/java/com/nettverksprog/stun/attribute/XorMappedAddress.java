@@ -65,12 +65,12 @@ public class XorMappedAddress extends Address {
 
     private int getXorAddress() {
         int addressBits = ByteBuffer.wrap(address.getAddress().getAddress()).getInt();
-
+        
         if (isIPv4())
             return addressBits ^ MessageHeader.MAGIC_COOKIE;
         else if (isIPv6())
             return addressBits ^ (MessageHeader.MAGIC_COOKIE | transactionId);
-
+        
         throw new IllegalArgumentException("Unknown IP address class: " + address.getAddress().getClass());
     }
 }

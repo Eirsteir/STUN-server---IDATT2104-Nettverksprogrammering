@@ -1,5 +1,7 @@
 package com.nettverksprog.stun.attribute;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
@@ -23,6 +25,22 @@ public class Username implements Attribute {
         return username.getBytes(ENCODING);
     }
 
+    public int getUsernameLength(){
+        return this.username.length;
+    }
+
+    public byte[] getUsername() {
+        return username;
+    }
+
+    public String getUsernameString() throws UnsupportedEncodingException {
+        return new String(this.username, ENCODING);
+    }
+
+    private int calculatePadding(){
+        return MAX_LENGTH - username.length;
+    }
+
     @Override
     public AttributeType getType() {
         return AttributeType.USERNAME;
@@ -35,6 +53,12 @@ public class Username implements Attribute {
 
     @Override
     public byte[] getBytes() throws IOException {
-        return new byte[0];
+        ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+        DataOutputStream dataOut = new DataOutputStream(byteOut);
+        byte[] padding = new byte[calculatePadding()];
+        dataOut.write(padding);
+        dataOut.write(username);
+
+        return byteOut.toByteArray();
     }
 }
