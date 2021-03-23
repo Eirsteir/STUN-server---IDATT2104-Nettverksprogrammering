@@ -1,5 +1,7 @@
 package com.nettverksprog.stun.attribute;
 
+import lombok.ToString;
+
 import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.Inet6Address;
@@ -9,6 +11,7 @@ import java.net.InetSocketAddress;
  * Abstract class Address provides subclasses
  * MappedAddress and XorAddress with shared methods and variables
  */
+@ToString
 public abstract class Address implements Attribute {
     protected static final int IPV4_LENGTH = 8; // TODO: byte?
     protected static final int IPV6_LENGTH = 20; // TODO: byte?

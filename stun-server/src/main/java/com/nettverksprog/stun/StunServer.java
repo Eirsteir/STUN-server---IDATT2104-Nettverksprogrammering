@@ -140,7 +140,7 @@ public class StunServer {
         }
 
         /**
-         * Builds a resonse with the transaction ID from the message received
+         * Builds a response with the transaction ID from the message received
          * The success response are given the BINDING method and SUCCESS_RESPONSE class
          * The message header and mapped address are used to create our success response
          * @param receivedMessage

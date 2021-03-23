@@ -1,6 +1,7 @@
 package com.nettverksprog.stun.attribute;
 
 import com.nettverksprog.stun.header.MessageHeader;
+import lombok.ToString;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -22,7 +23,8 @@ import java.nio.ByteBuffer;
  *      |                X-Address (Variable)
  *      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
  */
-public class XorMappedAddress extends Address{
+@ToString(callSuper = true)
+public class XorMappedAddress extends Address {
 
     private int transactionId;
 
@@ -45,7 +47,7 @@ public class XorMappedAddress extends Address{
         dataOut.writeByte(leadingZeroes);
         dataOut.writeByte(addressFamily);
         dataOut.writeShort(getXorPort());
-        dataOut.write(getXorAddress());
+        dataOut.writeInt(getXorAddress());
 
         return byteOut.toByteArray();
     }
@@ -63,11 +65,12 @@ public class XorMappedAddress extends Address{
 
     private int getXorAddress() {
         int addressBits = ByteBuffer.wrap(address.getAddress().getAddress()).getInt();
-        if (isIPv4()) {
+
+        if (isIPv4())
             return addressBits ^ MessageHeader.MAGIC_COOKIE;
-        } else if (isIPv6()) {
+        else if (isIPv6())
             return addressBits ^ (MessageHeader.MAGIC_COOKIE | transactionId);
-        }
+
         throw new IllegalArgumentException("Unknown IP address class: " + address.getAddress().getClass());
     }
 }
