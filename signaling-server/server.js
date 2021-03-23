@@ -37,4 +37,5 @@ io.on("connection", socket => {
     });
 });
 
-server.listen(8000, () => console.log('server is running on port 8000'));
+const port = process.env.PORT || 8080
+server.listen(port, () => console.log(`server is running on port ${port}`));
