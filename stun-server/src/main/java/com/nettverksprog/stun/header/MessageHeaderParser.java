@@ -1,13 +1,13 @@
 package com.nettverksprog.stun.header;
 
+import com.nettverksprog.stun.message.MessageFormatException;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
 public class MessageHeaderParser {
-
-    private static final int MESSAGE_CLASS_MASK = 0x0110;
-
+    
     /**
      * The message header parser is provided the header bytes
      * The different contents of the header is read with datainputstream
@@ -19,24 +19,15 @@ public class MessageHeaderParser {
      * @throws IOException
      */
     public MessageHeader parseMessageHeader(byte[] headerBytes) throws IOException {
+        checkHeaderLength(headerBytes);
+
         ByteArrayInputStream byteIn = new ByteArrayInputStream(headerBytes);
         DataInputStream dataIn = new DataInputStream(byteIn);
 
-        /*
-             0                   1                   2                   3
-              0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-         *  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-         *  |0 0|     STUN Message Type     |         Message Length        |
-         *  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-         *  |                         Magic Cookie                          |
-         *  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-         *  |                                                               |
-         *  |                     Transaction ID (96 bits)                  |
-         *  |                                                               |
-         *  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-        */
         int leading32Bits = dataIn.readInt(); //is the first int of the header bytes
         int leadingZeroes = (leading32Bits & MessageHeader.MESSAGE_TYPE_MASK) >> MessageHeader.MESSAGE_TYPE_SHIFT;
+        checkLeadingZeroes(leadingZeroes);
+
         int messageTypeBits = (leading32Bits & MessageHeader.MESSAGE_TYPE_MASK) >> MessageHeader.MESSAGE_TYPE_SHIFT; //type is bit 3-16
         int messageClassBits = messageTypeBits & MessageHeader.MESSAGE_CLASS_MASK;
         int messageMethodBits = messageTypeBits & MessageHeader.MESSAGE_METHOD_MASK;
@@ -54,29 +45,37 @@ public class MessageHeaderParser {
         return new MessageHeader(messageMethod, messageClass, length, transactionId);
     }
 
-    /**
-     * Checks that the Magic Cookie in the MessageHeader matches with the expected value.
-     * @param checkThis variable to check
-     * @throws IOException
-     */
-    private void checkMagicCookie(int checkThis) throws IOException {
-        if (checkThis != MessageHeader.MAGIC_COOKIE) {
-            throw new IOException("Wrong magic cookie, go get some other drugs" + checkThis + " != " + MessageHeader.MAGIC_COOKIE);
-        }
-    }
 
     /**
-     * Checks that the header recieved has the correct length,
+     * Checks that the header received has the correct length,
      * throws error if something doesnt match.
      * @param encodedHeader
      * @throws IOException
      */
-    private void checkHeaderLength(byte[] encodedHeader) throws IOException {
-        if (encodedHeader == null) {
+    private void checkHeaderLength(byte[] encodedHeader) {
+        if (encodedHeader == null)
             throw new NullPointerException();
-        } else if (encodedHeader.length != MessageHeader.HEADER_LENGTH) {
-            throw new IOException("This header's length does not match the expected value.");
-        }
+        else if (encodedHeader.length != MessageHeader.HEADER_LENGTH)
+            throw new MessageFormatException("This header's length does not match the expected value.");
     }
+
+    /**
+     * Make sure the message contains the two leading zeroes of a STUN message.
+     * @param leadingZeroes
+     */
+    private void checkLeadingZeroes(int leadingZeroes) {
+        if (leadingZeroes != 0)
+            throw new MessageFormatException("The first two bits of the message are not 0, was: " + leadingZeroes);
+    }
+
+    /**
+     * Checks that the Magic Cookie in the MessageHeader matches with the expected value.
+     * @param magicCookie variable to check
+     */
+    private void checkMagicCookie(int magicCookie) {
+        if (magicCookie != MessageHeader.MAGIC_COOKIE)
+            throw new MessageFormatException("Wrong magic cookie, go get some other drugs" + magicCookie + " != " + MessageHeader.MAGIC_COOKIE);
+    }
+
 
 }

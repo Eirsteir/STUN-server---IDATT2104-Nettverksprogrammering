@@ -9,7 +9,7 @@ import java.net.InetSocketAddress;
  */
 public class Username implements Attribute {
     private InetSocketAddress address;
-    private static final int MAX_LENGTH = 513; //per RFC 5389
+    private static final int MAX_LENGTH = 512; //per RFC 5389
     private final byte[] username;
     private final String ENCODING = "UTF-8";
     private int password; //sløyfes?
