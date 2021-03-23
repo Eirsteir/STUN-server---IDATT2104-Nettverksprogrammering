@@ -61,6 +61,11 @@ public class AttributeBuilder {
         return this;
     }
 
+    public AttributeBuilder errorCode(DatagramPacket packet, Message message){
+        //TODO Implement Message Integrity attribute
+        return this;
+    }
+
     public List<Attribute> build() {
         return attributes;
     }

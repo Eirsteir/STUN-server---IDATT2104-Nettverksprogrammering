@@ -66,7 +66,6 @@ public class StunServer {
         /**
          * Initializes a thread, given an address
          * Creates a new DatagramSocket with this address
-         * @param ipAddress
          * @throws SocketException
          */
         private StunServerThread(int port) throws SocketException {
