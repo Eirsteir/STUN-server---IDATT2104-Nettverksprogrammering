@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/eirsteir.github.io/p2p-client/static/css/main.827f4fc7.chunk.css",
+    "main.js": "/eirsteir.github.io/p2p-client/static/js/main.96a8a802.chunk.js",
+    "main.js.map": "/eirsteir.github.io/p2p-client/static/js/main.96a8a802.chunk.js.map",
+    "runtime-main.js": "/eirsteir.github.io/p2p-client/static/js/runtime-main.b8376851.js",
+    "runtime-main.js.map": "/eirsteir.github.io/p2p-client/static/js/runtime-main.b8376851.js.map",
+    "static/js/2.49055729.chunk.js": "/eirsteir.github.io/p2p-client/static/js/2.49055729.chunk.js",
+    "static/js/2.49055729.chunk.js.map": "/eirsteir.github.io/p2p-client/static/js/2.49055729.chunk.js.map",
+    "index.html": "/eirsteir.github.io/p2p-client/index.html",
+    "static/css/main.827f4fc7.chunk.css.map": "/eirsteir.github.io/p2p-client/static/css/main.827f4fc7.chunk.css.map",
+    "static/js/2.49055729.chunk.js.LICENSE.txt": "/eirsteir.github.io/p2p-client/static/js/2.49055729.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b8376851.js",
+    "static/js/2.49055729.chunk.js",
+    "static/css/main.827f4fc7.chunk.css",
+    "static/js/main.96a8a802.chunk.js"
+  ]
+}
