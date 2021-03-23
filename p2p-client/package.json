@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "eirsteir.github.io/p2p-client",
+  "homepage": "https://eirsteir.github.io/STUN-server---IDATT2104-Nettverksprogrammering/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
