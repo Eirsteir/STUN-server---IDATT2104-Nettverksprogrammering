@@ -28,9 +28,9 @@ jobs:
 - deployment: VMDeploy
   displayName: web
   environment:
-    name:  stun
+    resourceName: STUN
+    name:  STUN
     resourceType: VirtualMachine
-    tags: stun1
   strategy:
     rolling:
       maxParallel: 2  #for percentages, mention as x%
