@@ -46,6 +46,21 @@ public class AttributeBuilder {
         return this;
     }
 
+    public AttributeBuilder username(DatagramPacket packet, Message message){
+        //TODO Implement Username attribute
+        return this;
+    }
+
+    public AttributeBuilder fingerprint(DatagramPacket packet, Message message){
+        //TODO Implement Fingerprint attribute
+        return this;
+    }
+
+    public AttributeBuilder messageIntegrity(DatagramPacket packet, Message message){
+        //TODO Implement Message Integrity attribute
+        return this;
+    }
+
     public List<Attribute> build() {
         return attributes;
     }
