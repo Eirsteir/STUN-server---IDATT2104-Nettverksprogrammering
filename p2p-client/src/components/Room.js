@@ -12,7 +12,7 @@ const Room = (props) => {
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        socketRef.current = io.connect("http://localhost:8000");
+        socketRef.current = io.connect("https://signaling-server-nettprogg.herokuapp.com/");
         socketRef.current.emit("join room", props.match.params.roomID);
 
         socketRef.current.on('other user', userID => {
