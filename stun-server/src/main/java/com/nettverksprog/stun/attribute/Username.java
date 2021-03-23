@@ -8,6 +8,7 @@ import java.net.InetSocketAddress;
 
 /**
  * Username attribute class as defined in RFC 5389
+ * This Username class is incomplete, and will need further work before implementation
  */
 public class Username implements Attribute {
     private InetSocketAddress address;
@@ -16,11 +17,22 @@ public class Username implements Attribute {
     private final String ENCODING = "UTF-8";
     private int password; //sløyfes?
 
-    public Username(InetSocketAddress address, String username) throws UnsupportedEncodingException {
-        this.address = address;
+    /**
+     * A Username is an encoded String, which is defined at creation
+     * The username has a maximum length of 512 bytes
+     * @param username
+     * @throws UnsupportedEncodingException
+     */
+    public Username(String username) throws UnsupportedEncodingException {
         this.username = encodeUsername(username);
     }
 
+    /**
+     * Uses UTF-8 to encode the username String, returning the byte array
+     * @param username
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     public byte[] encodeUsername(String username) throws UnsupportedEncodingException {
         return username.getBytes(ENCODING);
     }
@@ -37,6 +49,10 @@ public class Username implements Attribute {
         return new String(this.username, ENCODING);
     }
 
+    /**
+     * Method that returns the remaining nr of bytes
+     * @return padding
+     */
     private int calculatePadding(){
         return MAX_LENGTH - username.length;
     }
@@ -51,6 +67,13 @@ public class Username implements Attribute {
         return 0;
     }
 
+    /**
+     * Method that returns the total 512 bytes
+     * The username byte arrays at the back
+     * and the calculated padding at the front
+     * @return
+     * @throws IOException
+     */
     @Override
     public byte[] getBytes() throws IOException {
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
