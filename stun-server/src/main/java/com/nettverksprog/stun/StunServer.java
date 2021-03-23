@@ -29,15 +29,15 @@ public class StunServer {
 
     static final int PORT = 3478; //port is set to 3478 which is used for STUN
     private final int SECONDARY_PORT = PORT + 1; //the secondary port is simply set with our primary port + 1
-    private final InetSocketAddress primaryAddress;
-    private final InetSocketAddress secondaryAddress;
+//    private final InetSocketAddress primaryAddress;
+//    private final InetSocketAddress secondaryAddress;
 
     private List<StunServerThread> listeners;
 
     public StunServer() {
         //primary and secondary address are set with primary and secodary port
-        this.primaryAddress = new InetSocketAddress("localhost", PORT);
-        this.secondaryAddress = new InetSocketAddress("localhost", SECONDARY_PORT);
+//        this.primaryAddress = new InetSocketAddress("localhost", PORT);
+//        this.secondaryAddress = new InetSocketAddress("localhost", SECONDARY_PORT);
         this.listeners = new ArrayList<>();
     }
 
@@ -48,8 +48,8 @@ public class StunServer {
      */
     public void start() throws SocketException {
         log.debug("Starting STUN server");
-        listeners.add(new StunServerThread(primaryAddress));
-        listeners.add(new StunServerThread(secondaryAddress));
+        listeners.add(new StunServerThread(PORT));
+        listeners.add(new StunServerThread(SECONDARY_PORT));
 
         listeners.forEach(Thread::start); //start each server thread in the list
     }
@@ -69,8 +69,8 @@ public class StunServer {
          * @param ipAddress
          * @throws SocketException
          */
-        private StunServerThread(InetSocketAddress ipAddress) throws SocketException {
-            receiverSocket = new DatagramSocket(ipAddress);
+        private StunServerThread(int port) throws SocketException {
+            receiverSocket = new DatagramSocket(port);
             //receiverSocket.bind(ipAddress);
         }
 

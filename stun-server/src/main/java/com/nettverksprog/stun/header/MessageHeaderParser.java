@@ -26,7 +26,7 @@ public class MessageHeaderParser {
 
         int leading32Bits = dataIn.readInt(); //is the first int of the header bytes
         int leadingZeroes = (leading32Bits & MessageHeader.MESSAGE_TYPE_MASK) >> MessageHeader.MESSAGE_TYPE_SHIFT;
-        checkLeadingZeroes(leadingZeroes);
+//        checkLeadingZeroes(leadingZeroes); Caused error on incoming message
 
         int messageTypeBits = (leading32Bits & MessageHeader.MESSAGE_TYPE_MASK) >> MessageHeader.MESSAGE_TYPE_SHIFT; //type is bit 3-16
         int messageClassBits = messageTypeBits & MessageHeader.MESSAGE_CLASS_MASK;
