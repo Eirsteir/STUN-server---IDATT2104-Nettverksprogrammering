@@ -9,20 +9,22 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-
-- task: Maven@3
-  displayName: 'Maven Package'
-  inputs:
-    mavenPomFile: 'stun-server/pom.xml'
-- task: CopyFiles@2
-  displayName: 'Copy Files to artifact staging directory'
-  inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)/stun-server/'
-    Contents: '**/target/*.?(war|jar)'
-    TargetFolder: $(Build.ArtifactStagingDirectory)
-- upload: $(Build.ArtifactStagingDirectory)
-  artifact: drop
+jobs:
+- job: Build
+  displayName: Build Maven Project
+  steps:
+  - task: Maven@3
+    displayName: 'Maven Package'
+    inputs:
+      mavenPomFile: 'stun-server/pom.xml'
+  - task: CopyFiles@2
+    displayName: 'Copy Files to artifact staging directory'
+    inputs:
+      SourceFolder: '$(System.DefaultWorkingDirectory)/stun-server/'
+      Contents: '**/target/*.?(war|jar)'
+      TargetFolder: $(Build.ArtifactStagingDirectory)
+  - upload: $(Build.ArtifactStagingDirectory)
+    artifact: drop
 - deployment: VMDeploy
   displayName: web
   environment:
