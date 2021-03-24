@@ -229,6 +229,8 @@ This project would not have been possible without the help from developers provi
 
 [STUN Protocol Explained by Nick Galea](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Simple_RTCDataChannel_sample)
 
+[Datakom for Dataingeniører, NAT](https://sites.google.com/view/tdat2004-datakom/nettverkslaget/nat?authuser=0)
+
 [Universal Connection Establishment by htwg](https://github.com/htwg/UCE)
 
 [Binary Arithmetic Shifts by MrBrownCS](https://www.youtube.com/watch?v=nm_laES9rKk&ab_channel=MrBrownCS)
@@ -243,8 +245,6 @@ This project would not have been possible without the help from developers provi
 
 [P2P-chat-java by NateKong](https://github.com/NateKong/P2P-chat-java/blob/master/STUN.java)
 
-[How to Open Firewall Ports in Windows 10](https://www.tomshardware.com/news/how-to-open-firewall-ports-in-windows-10,36451.html)
-
 [WebRTC samples Trickle ICE](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/)
 
 [Deploying Node.js](https://devcenter.heroku.com/articles/deploying-nodejs)
@@ -255,3 +255,6 @@ This project would not have been possible without the help from developers provi
 
 [Setting up a CI/CD workflow on GitHub Actions for a React App (with GitHub Pages and Codecov)](https://dev.to/dyarleniber/setting-up-a-ci-cd-workflow-on-github-actions-for-a-react-app-with-github-pages-and-codecov-4hnp)
 
+[How To Create A Video Chat App With WebRTC](https://www.youtube.com/watch?v=DvlyzDZDEq4&t=1313s)
+
+[Fun ways to animate CSS gradients](https://www.youtube.com/watch?v=f3mwKLXpOLk)
