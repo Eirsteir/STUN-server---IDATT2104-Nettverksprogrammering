@@ -3,7 +3,7 @@
 ### LAST CONTINIOUS INTEGRATION / DEPLOYMENT
 
 - [STUN server Maven CI](https://github.com/Eirsteir/STUN-server---IDATT2104-Nettverksprogrammering/actions/workflows/maven.yml)
-- STUN server CD?
+- [STUN server CD](https://github.com/Eirsteir/STUN-server---IDATT2104-Nettverksprogrammering/runs/2183152695)
 - [Peer to peer client React CI/CD](https://github.com/Eirsteir/STUN-server---IDATT2104-Nettverksprogrammering/actions/workflows/node-client.yml)
 
 ### INTRODUCTION
