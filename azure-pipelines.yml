@@ -9,6 +9,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+
 jobs:
 - job: Build
   displayName: Build Maven Project
@@ -26,11 +27,11 @@ jobs:
   - upload: $(Build.ArtifactStagingDirectory)
     artifact: drop
 - deployment: VMDeploy
-  displayName: web
+  displayName: Deploy STUN Server
   environment:
-    resourceName: STUN
     name:  STUN
     resourceType: VirtualMachine
+    tags: stun
   strategy:
     rolling:
       maxParallel: 2  #for percentages, mention as x%
