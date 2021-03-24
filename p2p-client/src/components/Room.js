@@ -135,7 +135,7 @@ const Room = (props) => {
 
     return (
         <div className="container">
-            <h1>Chat room: {props.match.params.roomID}</h1>
+            <h1>Chat ID: {props.match.params.roomID}</h1>
             <div className="username">
                 <input id="name" type="text" placeholder="Username"></input>
                 <button id="name-btn">Submit</button>
