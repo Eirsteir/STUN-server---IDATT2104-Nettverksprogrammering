@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/STUN-server---IDATT2104-Nettverksprogrammering/static/css/main.958524f4.chunk.css",
-    "main.js": "/STUN-server---IDATT2104-Nettverksprogrammering/static/js/main.d55a330c.chunk.js",
-    "main.js.map": "/STUN-server---IDATT2104-Nettverksprogrammering/static/js/main.d55a330c.chunk.js.map",
+    "main.css": "/STUN-server---IDATT2104-Nettverksprogrammering/static/css/main.28fd0ef7.chunk.css",
+    "main.js": "/STUN-server---IDATT2104-Nettverksprogrammering/static/js/main.82307592.chunk.js",
+    "main.js.map": "/STUN-server---IDATT2104-Nettverksprogrammering/static/js/main.82307592.chunk.js.map",
     "runtime-main.js": "/STUN-server---IDATT2104-Nettverksprogrammering/static/js/runtime-main.6c33012f.js",
     "runtime-main.js.map": "/STUN-server---IDATT2104-Nettverksprogrammering/static/js/runtime-main.6c33012f.js.map",
-    "static/js/2.223ea8c5.chunk.js": "/STUN-server---IDATT2104-Nettverksprogrammering/static/js/2.223ea8c5.chunk.js",
-    "static/js/2.223ea8c5.chunk.js.map": "/STUN-server---IDATT2104-Nettverksprogrammering/static/js/2.223ea8c5.chunk.js.map",
+    "static/js/2.52cd8c01.chunk.js": "/STUN-server---IDATT2104-Nettverksprogrammering/static/js/2.52cd8c01.chunk.js",
+    "static/js/2.52cd8c01.chunk.js.map": "/STUN-server---IDATT2104-Nettverksprogrammering/static/js/2.52cd8c01.chunk.js.map",
     "index.html": "/STUN-server---IDATT2104-Nettverksprogrammering/index.html",
-    "static/css/main.958524f4.chunk.css.map": "/STUN-server---IDATT2104-Nettverksprogrammering/static/css/main.958524f4.chunk.css.map",
-    "static/js/2.223ea8c5.chunk.js.LICENSE.txt": "/STUN-server---IDATT2104-Nettverksprogrammering/static/js/2.223ea8c5.chunk.js.LICENSE.txt"
+    "static/css/main.28fd0ef7.chunk.css.map": "/STUN-server---IDATT2104-Nettverksprogrammering/static/css/main.28fd0ef7.chunk.css.map",
+    "static/js/2.52cd8c01.chunk.js.LICENSE.txt": "/STUN-server---IDATT2104-Nettverksprogrammering/static/js/2.52cd8c01.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.6c33012f.js",
-    "static/js/2.223ea8c5.chunk.js",
-    "static/css/main.958524f4.chunk.css",
-    "static/js/main.d55a330c.chunk.js"
+    "static/js/2.52cd8c01.chunk.js",
+    "static/css/main.28fd0ef7.chunk.css",
+    "static/js/main.82307592.chunk.js"
   ]
 }
