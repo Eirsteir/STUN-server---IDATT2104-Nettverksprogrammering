@@ -174,17 +174,17 @@ These require additional special processing.
 
 For this project some external dependencies where used:
 
-- Lombok
-- Spring Boot
-- React
-- socket.io
-- express
+- Lombok Library for generating boilerplate code for Java
+- Spring Boot: Framework for creating back end programs. 
+- React: JavaScript framework for creating responsive GUI. 
+- socket.io: Library for real time Server-Web communication
+- express: Node.js framework for web applications.
 
 ### TECHNOLOGIES 
 - Docker: Containerizing framework.
 - Hekoru: PaaS for hosting a variety of services.
-- Node.js
-- Azure
+- Node.js: JavaScript runtime
+- Azure: Cloud computing platform and infrastructure
 
 ### INSTALLATION
 
