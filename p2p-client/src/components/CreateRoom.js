@@ -32,7 +32,7 @@ const CreateRoom = (props) => {
     const JoinForm = () => (
         <div id="join-form">
             <button type="text" className="join-btn" onClick={hideJoin}>X</button>
-            <input type="text" className="join-text" placeholder="Input chat ID here" value={joinID} onChange={handleChange}></input>
+            <input type="text" className="join-text" placeholder="Paste chat ID here" value={joinID} onChange={handleChange}></input>
             <button className="join-btn" onClick={join}>Join</button>
         </div>
     )
